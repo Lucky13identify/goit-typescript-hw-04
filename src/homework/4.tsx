@@ -3,11 +3,11 @@ import noop from "lodash/noop";
 
 type MenuIds = "first" | "second" | "last";
 type Menu = { id: MenuIds; title: string };
-
+type SelectedMenu = { id?: MenuIds };
 // Додати тип Menu Selected
 
 interface MenuSelected {
-  selectedMenu: object;
+  selectedMenu: SelectedMenu;
 }
 
 const MenuSelectedContext = createContext<MenuSelected>({
@@ -15,7 +15,7 @@ const MenuSelectedContext = createContext<MenuSelected>({
 });
 
 interface MenuAction {
-  onSelectedMenu: () => void;
+  onSelectedMenu: (menu: SelectedMenu) => void;
 }
 // Додайте тип MenuAction
 
@@ -26,8 +26,6 @@ const MenuActionContext = createContext<MenuAction>({
 type PropsProvider = {
   children: React.ReactNode; // Додати тип для children
 };
-
-type SelectedMenu = { id?: MenuIds };
 
 function MenuProvider({ children }: PropsProvider) {
   // Додати тип для SelectedMenu він повинен містити { id }
